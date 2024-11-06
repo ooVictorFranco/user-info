@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Select from '@radix-ui/react-select';
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 import { languages } from '../utils/languages';
@@ -9,9 +9,14 @@ interface LanguageSelectProps {
 }
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({ onValueChange }) => {
+  const [isMobileState, setIsMobileState] = useState(false);
   const isMobile = useIsMobile();
 
-  if (isMobile) {
+  useEffect(() => {
+    setIsMobileState(isMobile);
+  }, [isMobile]);
+
+  if (isMobileState) {
     return (
       <select
         onChange={(e) => onValueChange(e.target.value)}

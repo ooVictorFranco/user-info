@@ -5,7 +5,8 @@ export function useIsMobile() {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+      const userAgent = 
+        typeof window.navigator === "undefined" ? "" : navigator.userAgent;
       const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
       setIsMobile(mobileRegex.test(userAgent.toLowerCase()));
     };
