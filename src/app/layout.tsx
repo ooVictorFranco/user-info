@@ -1,11 +1,9 @@
+import { Metadata } from 'next'
 import './globals.css'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata = {
-  title: 'User info App',
-  description: 'Select your language and view user information',
+export const metadata: Metadata = {
+  title: 'User Info App',
+  description: 'An app to display user system information',
 }
 
 export default function RootLayout({
@@ -15,7 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.ipify.org https://ipapi.co;" />
+      </head>
+      <body>{children}</body>
     </html>
   )
 }

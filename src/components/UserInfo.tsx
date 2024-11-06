@@ -1,19 +1,15 @@
 'use client'
 
 import React from 'react';
-import { useUserInfo } from '../utils/getUserInfo';
-import Skeleton from './Skeleton';
 
 interface UserInfoProps {
-  selectedLanguage: string;
+  userInfo: any; // Você pode definir um tipo mais específico aqui
   translations: Record<string, string>;
 }
 
-const UserInfo: React.FC<UserInfoProps> = ({ selectedLanguage, translations }) => {
-  const userInfo = useUserInfo(selectedLanguage);
-
+const UserInfo: React.FC<UserInfoProps> = ({ userInfo, translations }) => {
   if (!userInfo) {
-    return <Skeleton />;
+    return null;
   }
 
   return (
