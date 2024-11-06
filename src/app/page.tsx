@@ -1,41 +1,36 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import LanguageSelect from '../components/LanguageSelect';
 import AnimatedTitle from '../components/AnimatedTitle';
-import { getEnterButtonText } from '../utils/languages';
+import { getEnterButtonText, LanguageCode } from '../utils/languages';
 
 export default function Home() {
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const router = useRouter();
-
-  useEffect(() => {
-    console.log('Home component mounted');
-  }, []);
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>('en');
 
   const handleLanguageChange = (value: string) => {
-    console.log('Language changed to:', value);
-    setSelectedLanguage(value);
+    setSelectedLanguage(value as LanguageCode);
   };
 
   const handleEnter = () => {
-    console.log('Enter button clicked');
+    // Redireciona para a página de informações com o idioma selecionado
     router.push(`/info?lang=${selectedLanguage}`);
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-background text-text">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <AnimatedTitle />
-      <div className="mb-8 mt-8">
+      <div className="mb-4 mt-8">
         <LanguageSelect onValueChange={handleLanguageChange} />
       </div>
       <button
         onClick={handleEnter}
-        className="px-6 py-3 text-lg bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors focus:outline-none focus-visible"
+        className="px-6 py-3 text-lg bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
       >
         {getEnterButtonText(selectedLanguage)}
       </button>
-    </main>
+    </div>
   );
 }

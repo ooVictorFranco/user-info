@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import { UserInfo } from './UserInfo';
+import UserInfo from './UserInfo';
 import LoadingSpinner from './LoadingSpinner';
 import { useUserInfo } from '../utils/getUserInfo';
 

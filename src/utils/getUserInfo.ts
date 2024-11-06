@@ -17,6 +17,7 @@ interface NavigatorExtended extends Navigator {
   deviceMemory?: number;
   connection?: {
     effectiveType: string;
+    type?: string; // Pode retornar 'wifi', 'cellular', etc. em alguns navegadores
   };
   getBattery?: () => Promise<BatteryManager>;
 }
@@ -86,7 +87,10 @@ export const useUserInfo = (lang: string): UserInfo | null => {
 
         const extendedNavigator = navigator as NavigatorExtended;
         const deviceMemory: number | 'Unknown' = extendedNavigator.deviceMemory || 'Unknown';
-        const connectionType: string = extendedNavigator.connection?.effectiveType || 'Unknown';
+
+        // Verificar se o tipo de conexão física está disponível
+        const connectionType: string = extendedNavigator.connection?.type || extendedNavigator.connection?.effectiveType || 'Unknown';
+
         const prefersDarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         const touchPoints: number = navigator.maxTouchPoints;
 
