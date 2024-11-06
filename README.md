@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# User Info
 
-## Getting Started
+User Info é uma aplicação web que permite aos usuários visualizar informações detalhadas sobre seu sistema e navegador, com suporte para múltiplos idiomas.
 
-First, run the development server:
+## Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Seleção de idioma na página inicial
+- Exibição detalhada de informações do usuário, incluindo:
+  - Sistema operacional e navegador
+  - Informações de hardware (CPU, RAM, etc.)
+  - Configurações de exibição
+  - Localização e fuso horário
+  - Outras configurações do navegador
+- Suporte para múltiplos idiomas (Inglês, Português, Espanhol, Francês, Alemão, Árabe)
+- Design responsivo e acessível
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Radix UI
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pré-requisitos
 
-## Learn More
+Antes de começar, certifique-se de ter instalado:
+- Node.js (versão 14 ou superior)
+- npm (geralmente vem com Node.js)
 
-To learn more about Next.js, take a look at the following resources:
+## Instalação
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone o repositório:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```git clone https://github.com/ooVictorFranco/user-info.git```
 
-## Deploy on Vercel
+2. Navegue até o diretório do projeto:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```cd user-info```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Instale as dependências:
+
+```npm install```
+
+## Executando o Projeto
+
+Para executar o projeto em modo de desenvolvimento:
+
+```npm run dev```
+
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
+
+## Construção para Produção
+
+Para criar uma versão otimizada para produção:
+
+```npm run build```
+
+Em seguida, para iniciar o servidor de produção:
+
+```npm start```
+
+
+## Estrutura do Projeto
+
+- `src/app/`: Contém as páginas da aplicação
+- `src/components/`: Componentes React reutilizáveis
+- `src/utils/`: Funções utilitárias e configurações
+
+## Contribuindo
+
+Contribuições são sempre bem-vindas! Por favor, leia o guia de contribuição para saber como contribuir para o projeto.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
+
+## Contato
+
+Victor Franco - [GitHub](https://github.com/ooVictorFranco)
+
+Link do Projeto: [https://github.com/ooVictorFranco/user-info](https://github.com/ooVictorFranco/user-info)
