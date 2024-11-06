@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react';
-import UserInfo from './UserInfo';
+import { UserInfo } from './UserInfo';
 import LoadingSpinner from './LoadingSpinner';
 import { useUserInfo } from '../utils/getUserInfo';
 
@@ -17,7 +19,7 @@ const InfoContent: React.FC<InfoContentProps> = ({ lang, translations }) => {
       {!userInfo ? (
         <LoadingSpinner />
       ) : (
-        <UserInfo lang={lang} translations={translations} />
+        <UserInfo translations={translations} userInfo={userInfo} />
       )}
       <button
         onClick={() => window.history.back()}

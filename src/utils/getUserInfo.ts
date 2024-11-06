@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-interface UserInfo {
+export interface UserInfo {
   os: string;
   browser: string;
   browserVersion: string;

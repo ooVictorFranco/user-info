@@ -1,18 +1,12 @@
 import React from 'react';
-import { useUserInfo } from '../utils/getUserInfo';
+import { UserInfo as UserInfoType } from '../utils/getUserInfo';
 
 interface UserInfoProps {
-  lang: string;
   translations: { [key: string]: string };
+  userInfo: UserInfoType;
 }
 
-const UserInfo: React.FC<UserInfoProps> = ({ lang, translations }) => {
-  const userInfo = useUserInfo(lang);
-
-  if (!userInfo) {
-    return <div>{translations.loading || 'Loading...'}</div>;
-  }
-
+export const UserInfo: React.FC<UserInfoProps> = ({ translations, userInfo }) => {
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-2xl w-full">
       <h2 className="text-2xl font-semibold mb-4">{translations.systemInfo}</h2>
