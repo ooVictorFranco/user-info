@@ -9,8 +9,6 @@ import { getEnterButtonText } from '../utils/languages';
 export default function Home() {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const router = useRouter();
-  // Remova ou comente a linha abaixo se não estiver usando translations
-  // const translations = getTranslations(selectedLanguage);
 
   useEffect(() => {
     console.log('Home component mounted');
@@ -27,17 +25,17 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-background text-text">
       <AnimatedTitle />
-      <div className="mb-4 mt-8">
+      <div className="mb-8 mt-8">
         <LanguageSelect onValueChange={handleLanguageChange} />
       </div>
       <button
         onClick={handleEnter}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4"
+        className="px-6 py-3 text-lg bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors focus:outline-none focus-visible"
       >
         {getEnterButtonText(selectedLanguage)}
       </button>
-    </div>
+    </main>
   );
 }

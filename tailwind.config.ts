@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -6,15 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // Suas extensões de tema aqui
+      colors: {
+        background: 'var(--color-background)',
+        text: 'var(--color-text)',
+        primary: 'var(--color-primary)',
+        'primary-hover': 'var(--color-primary-hover)',
+        secondary: 'var(--color-secondary)',
+      },
     },
   },
   plugins: [],
-  // Importante: adicione isso para garantir que os estilos do Radix UI sejam processados
-  safelist: [
-    {
-      pattern: /^(bg|text|border|ring)-(blue|gray|white)/,
-      variants: ['hover', 'focus', 'active'],
-    },
-  ],
 }

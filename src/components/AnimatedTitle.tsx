@@ -11,29 +11,28 @@ const welcomePhrases = [
 ];
 
 const AnimatedTitle: React.FC = () => {
-  const [currentPhrase, setCurrentPhrase] = useState(welcomePhrases[0]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * welcomePhrases.length);
-      setCurrentPhrase(welcomePhrases[randomIndex]);
-    }, 3000); // Change phrase every 3 seconds
+      setIndex(current => (current + 1) % welcomePhrases.length);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <div className="h-16 flex items-center justify-center overflow-hidden">
+    <div className="h-24 flex items-center justify-center overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.h1
-          key={currentPhrase}
+          key={index}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold absolute"
+          className="text-4xl font-bold text-center"
         >
-          {currentPhrase}
+          {welcomePhrases[index]}
         </motion.h1>
       </AnimatePresence>
     </div>
