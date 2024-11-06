@@ -90,18 +90,30 @@ function getOS(ua: string): string {
 
 function getBrowser(ua: string): { name: string; version: string } {
   const browserRegexes = [
-    { name: 'Chrome', regex: /Chrome\/(\S+)/ },
-    { name: 'Firefox', regex: /Firefox\/(\S+)/ },
-    { name: 'Safari', regex: /Version\/(\S+).*Safari/ },
-    { name: 'Opera', regex: /(Opera|OPR)\/(\S+)/ },
-    { name: 'Edge', regex: /Edg\/(\S+)/ },
-    { name: 'Internet Explorer', regex: /Trident.*rv:(\S+)/ },
+    { name: 'Opera', regex: /(Opera|OPR)\/([\d\.]+)/ },
+    { name: 'Edge', regex: /Edg\/([\d\.]+)/ },
+    { name: 'Chrome', regex: /Chrome\/([\d\.]+)/ },
+    { name: 'Firefox', regex: /Firefox\/([\d\.]+)/ },
+    { name: 'Safari', regex: /Version\/([\d\.]+).*Safari/ },
+    { name: 'Internet Explorer', regex: /Trident.*rv:([\d\.]+)/ },
   ];
 
   for (const browser of browserRegexes) {
     const match = ua.match(browser.regex);
     if (match) {
+      // Special case for Chrome-based browsers
+      if (browser.name === 'Chrome' && ua.indexOf('Chromium') > -1) {
+        return { name: 'Chromium', version: match[1] };
+      }
       return { name: browser.name, version: match[1] };
+    }
+  }
+
+  // Check for generic Chromium-based browsers
+  if (ua.indexOf('Chromium') > -1) {
+    const match = ua.match(/Chromium\/([\d\.]+)/);
+    if (match) {
+      return { name: 'Chromium-based', version: match[1] };
     }
   }
 
