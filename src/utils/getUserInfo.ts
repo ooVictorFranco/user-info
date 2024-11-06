@@ -48,7 +48,7 @@ export const useUserInfo = (selectedLanguage: string): UserInfo | null => {
         const colorDepth = `${window.screen.colorDepth}-bit`;
         const devicePixelRatio = window.devicePixelRatio;
         const cpuCores = navigator.hardwareConcurrency || 'Unknown';
-        const ram = 'Unknown'; // Removemos a referência a deviceMemory
+        const ram = 'Unknown'; // Não é possível obter a RAM diretamente no navegador
         const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         const cookiesEnabled = navigator.cookieEnabled;
         const doNotTrack = navigator.doNotTrack;

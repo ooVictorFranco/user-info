@@ -148,6 +148,7 @@ export const getTranslations = (langCode: string) => {
       notSet: 'Not Set',
       selectedLanguage: 'Selected Language',
       backButton: 'Back',
+      loading: 'Loading user information...',
     },
     pt: {
       userInfo: 'Informações do Usuário',
@@ -177,6 +178,7 @@ export const getTranslations = (langCode: string) => {
       notSet: 'Não Definido',
       selectedLanguage: 'Idioma Selecionado',
       backButton: 'Voltar',
+      loading: 'Carregando informações do usuário...',
     },
     es: {
       userInfo: 'Información del Usuario',
@@ -206,6 +208,7 @@ export const getTranslations = (langCode: string) => {
       notSet: 'No Establecido',
       selectedLanguage: 'Idioma Seleccionado',
       backButton: 'Volver',
+      loading: 'Cargando información del usuario...',
     },
     fr: {
       userInfo: 'Informations Utilisateur',
@@ -235,11 +238,12 @@ export const getTranslations = (langCode: string) => {
       notSet: 'Non Défini',
       selectedLanguage: 'Langue Sélectionnée',
       backButton: 'Retour',
+      loading: 'Chargement des informations utilisateur...',
     },
     de: {
       userInfo: 'Benutzerinformationen',
       systemInfo: 'Systeminformationen',
-      displayInfo: 'Anzeigeninformationen',
+      displayInfo: 'Anzeigeinformationen',
       locationInfo: 'Standortinformationen',
       otherInfo: 'Weitere Informationen',
       fullUserAgent: 'Vollständiger User Agent',
@@ -264,6 +268,7 @@ export const getTranslations = (langCode: string) => {
       notSet: 'Nicht Festgelegt',
       selectedLanguage: 'Ausgewählte Sprache',
       backButton: 'Zurück',
+      loading: 'Benutzerinformationen werden geladen...',
     },
     ar: {
       userInfo: 'معلومات المستخدم',
@@ -293,6 +298,7 @@ export const getTranslations = (langCode: string) => {
       notSet: 'غير محدد',
       selectedLanguage: 'اللغة المختارة',
       backButton: 'رجوع',
+      loading: 'جاري تحميل معلومات المستخدم...',
     },
   };
   return translations[langCode] || translations['en'];
