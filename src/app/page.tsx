@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import LanguageSelect from '../components/LanguageSelect';
 import AnimatedTitle from '../components/AnimatedTitle';
-import { getEnterButtonText, getTranslations } from '../utils/languages';
+import { getEnterButtonText } from '../utils/languages';
 
 export default function Home() {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const router = useRouter();
-  const translations = getTranslations(selectedLanguage);
+  // Remova ou comente a linha abaixo se não estiver usando translations
+  // const translations = getTranslations(selectedLanguage);
 
   useEffect(() => {
     console.log('Home component mounted');
@@ -24,8 +25,6 @@ export default function Home() {
     console.log('Enter button clicked');
     router.push(`/info?lang=${selectedLanguage}`);
   };
-
-  console.log('Rendering Home component');
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
