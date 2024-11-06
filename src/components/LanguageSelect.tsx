@@ -1,16 +1,34 @@
 import React from 'react';
 import * as Select from '@radix-ui/react-select';
-import { ChevronDownIcon, ChevronUpIcon, CheckIcon } from '@radix-ui/react-icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 import { languages } from '../utils/languages';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface LanguageSelectProps {
   onValueChange: (value: string) => void;
 }
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({ onValueChange }) => {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <select
+        onChange={(e) => onValueChange(e.target.value)}
+        className="px-4 py-2 bg-white text-gray-700 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        {languages.map((language) => (
+          <option key={language.value} value={language.value}>
+            {language.flag} {language.label}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
   return (
     <Select.Root onValueChange={onValueChange}>
-      <Select.Trigger className="inline-flex items-center justify-between rounded px-4 py-2 text-sm leading-none gap-1 bg-white text-gray-700 shadow-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-48" aria-label="Select a language">
+      <Select.Trigger className="inline-flex items-center justify-center rounded px-4 py-2 text-sm leading-none gap-1 bg-white text-gray-700 shadow-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-48" aria-label="Select a language">
         <Select.Value placeholder="Select a language" />
         <Select.Icon>
           <ChevronDownIcon />
@@ -34,9 +52,6 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ onValueChange }) => {
                   </span>
                   {language.label}
                 </Select.ItemText>
-                <Select.ItemIndicator className="absolute left-2 inline-flex items-center">
-                  <CheckIcon />
-                </Select.ItemIndicator>
               </Select.Item>
             ))}
           </Select.Viewport>
