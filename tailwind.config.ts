@@ -1,19 +1,20 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+      // Suas extensões de tema aqui
     },
   },
   plugins: [],
-};
-export default config;
+  // Importante: adicione isso para garantir que os estilos do Radix UI sejam processados
+  safelist: [
+    {
+      pattern: /^(bg|text|border|ring)-(blue|gray|white)/,
+      variants: ['hover', 'focus', 'active'],
+    },
+  ],
+}
