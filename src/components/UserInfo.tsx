@@ -2,8 +2,30 @@
 
 import React from 'react';
 
+// Defina a interface UserInfoData com base na estrutura real dos dados
+interface UserInfoData {
+  os: string;
+  browser: string;
+  browserVersion: string;
+  platform: string;
+  cpuCores: number | string;
+  ram: string;
+  screenSize: string;
+  colorDepth: string;
+  devicePixelRatio: number;
+  location: string;
+  ip: string;
+  language: string;
+  timezone: string;
+  datetime: string;
+  touchSupport: boolean;
+  cookiesEnabled: boolean;
+  doNotTrack: string | null;
+  userAgent: string;
+}
+
 interface UserInfoProps {
-  userInfo: any; // Você pode definir um tipo mais específico aqui
+  userInfo: UserInfoData | null;
   translations: Record<string, string>;
 }
 
