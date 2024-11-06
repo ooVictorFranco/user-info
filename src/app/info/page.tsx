@@ -4,14 +4,15 @@ import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { languages, getTranslations } from '../../utils/languages';
+import Skeleton from '../../components/Skeleton';
 
 const UserInfo = dynamic(() => import('../../components/UserInfo'), {
-  loading: () => <p>Carregando...</p>,
+  loading: () => <Skeleton />,
 });
 
 export default function Info() {
   return (
-    <Suspense fallback={<div>Carregando...</div>}>
+    <Suspense fallback={<Skeleton />}>
       <InfoContent />
     </Suspense>
   );

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useUserInfo } from '../utils/getUserInfo';
+import Skeleton from './Skeleton';
 
 interface UserInfoProps {
   selectedLanguage: string;
@@ -12,7 +13,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ selectedLanguage, translations }) =
   const userInfo = useUserInfo(selectedLanguage);
 
   if (!userInfo) {
-    return <div>{translations.loading || 'Loading user information...'}</div>;
+    return <Skeleton />;
   }
 
   return (
