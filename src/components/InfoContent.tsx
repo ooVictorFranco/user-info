@@ -1,40 +1,29 @@
-'use client'
-
-import React, { useState, useEffect } from 'react';
-import { languages, getTranslations } from '../utils/languages';
-import LoadingSpinner from './LoadingSpinner';
+import React from 'react';
 import UserInfo from './UserInfo';
+import LoadingSpinner from './LoadingSpinner';
 import { useUserInfo } from '../utils/getUserInfo';
 
 interface InfoContentProps {
   lang: string;
+  translations: { [key: string]: string };
 }
 
-const InfoContent: React.FC<InfoContentProps> = ({ lang }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const selectedLanguage = languages.find(l => l.value === lang) || languages[0];
-  const translations = getTranslations(lang);
-  const userInfo = useUserInfo(selectedLanguage.value);
-
-  useEffect(() => {
-    if (userInfo) {
-      setIsLoading(false);
-    }
-  }, [userInfo]);
+const InfoContent: React.FC<InfoContentProps> = ({ lang, translations }) => {
+  const userInfo = useUserInfo(lang);
 
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen bg-gray-100 ${selectedLanguage.direction === 'rtl' ? 'rtl' : 'ltr'}`}>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background text-text">
       <h1 className="text-3xl font-bold mb-8">{translations.userInfo}</h1>
-      {isLoading ? (
+      {!userInfo ? (
         <LoadingSpinner />
       ) : (
-        <UserInfo userInfo={userInfo} translations={translations} />
+        <UserInfo lang={lang} translations={translations} />
       )}
       <button
         onClick={() => window.history.back()}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4"
+        className="mt-8 px-6 py-3 text-lg bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors focus:outline-none focus-visible"
       >
-        {translations.backButton || 'Back'}
+        {translations.backButton}
       </button>
     </div>
   );

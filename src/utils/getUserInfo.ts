@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { languages } from './languages';
 
 interface UserInfo {
   os: string;
@@ -22,7 +21,7 @@ interface UserInfo {
   userAgent: string;
 }
 
-export const useUserInfo = (selectedLanguage: string): UserInfo | null => {
+export const useUserInfo = (lang: string): UserInfo | null => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   useEffect(() => {
@@ -34,24 +33,19 @@ export const useUserInfo = (selectedLanguage: string): UserInfo | null => {
         const infoResponse = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
         const infoData = await infoResponse.json();
 
-        const language = languages.find(lang => lang.value === selectedLanguage) || languages[0];
         const userAgent = window.navigator.userAgent;
         const os = getOS(userAgent);
         const browserInfo = getBrowser(userAgent);
 
-        const formattedDateTime = new Intl.DateTimeFormat(
-          language.locale,
-          language.dateTimeFormat
-        ).format(new Date());
-
-        const screenSize = `${window.screen.width}x${window.screen.height}`;
-        const colorDepth = `${window.screen.colorDepth}-bit`;
-        const devicePixelRatio = window.devicePixelRatio;
-        const cpuCores = navigator.hardwareConcurrency || 'Unknown';
-        const ram = 'Unknown'; // Não é possível obter a RAM diretamente no navegador
-        const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        const cookiesEnabled = navigator.cookieEnabled;
-        const doNotTrack = navigator.doNotTrack;
+        const formattedDateTime = new Intl.DateTimeFormat(lang, {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: lang.startsWith('en'),
+        }).format(new Date());
 
         setUserInfo({
           os,
@@ -60,16 +54,16 @@ export const useUserInfo = (selectedLanguage: string): UserInfo | null => {
           location: `${infoData.city}, ${infoData.country_name}`,
           ip: ipData.ip,
           datetime: formattedDateTime,
-          screenSize,
-          colorDepth,
-          devicePixelRatio,
-          cpuCores,
-          ram,
+          screenSize: `${window.screen.width}x${window.screen.height}`,
+          colorDepth: `${window.screen.colorDepth}-bit`,
+          devicePixelRatio: window.devicePixelRatio,
+          cpuCores: navigator.hardwareConcurrency || 'Unknown',
+          ram: 'Unknown', // It's not possible to get RAM info from browser
           language: navigator.language,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          touchSupport,
-          cookiesEnabled,
-          doNotTrack,
+          touchSupport: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+          cookiesEnabled: navigator.cookieEnabled,
+          doNotTrack: navigator.doNotTrack,
           platform: navigator.platform,
           userAgent,
         });
@@ -80,7 +74,7 @@ export const useUserInfo = (selectedLanguage: string): UserInfo | null => {
     };
 
     getUserInfo();
-  }, [selectedLanguage]);
+  }, [lang]);
 
   return userInfo;
 };
